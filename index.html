@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaiske8 | Scuderia Ferrari Hub</title>
+    <link rel="icon" href="Ferrari-favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,6 +22,92 @@
             <a href="https://store.ferrari.com/en-it/" class="nav-link" target="_blank" rel="noopener">SHOP</a>
         </div>
     </header>
+   <!-- Main Container for the New Hero Card -->
+<div class="f1-hero-card" onclick="playEngineSound()">
+  <div class="f1-hero-content">
+    <span class="f1-tag">New Season</span>
+    <h1>Experience Formula 1 Speed</h1>
+    <p>Click anywhere on this card to rev the V6 Turbo Hybrid engine!</p>
+  </div>
+  
+  <!-- F1 Car Image -->
+  <img src="f1-car.png  " alt="F1 Car" class="f1-car-image">
+  
+  <!-- Hidden Audio Element -->
+  <audio id="f1-engine-sound" src="path-to-your-engine-sound.mp3" preload="auto"></audio>
+</div>
+
+<script>
+function playEngineSound() {
+  const sound = document.getElementById('f1-engine-sound');
+  
+  // Reset audio to the start if clicked multiple times
+  sound.currentTime = 0; 
+  
+  // Play the engine sound
+  sound.play().catch(error => {
+    console.log("Browser blocked autoplay. User interaction verified:", error);
+  });
+}
+</script>
+
+<style>
+/* Base layout styles to push the old content down */
+.f1-hero-card {
+  position: relative;
+  width: 100%;
+  min-height: 450px;
+  background: linear-gradient(135deg, #15151e 0%, #1f1f2e 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px; /* Crucial: This pushes your old title and cards down */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle interactive hover effect */
+.f1-hero-card:hover {
+  transform: scale(1.005);
+  box-shadow: 0 15px 35px rgba(225, 6, 0, 0.2); /* F1 Red glow */
+}
+
+.f1-hero-content {
+  max-width: 50%;
+  z-index: 2;
+  font-family: sans-serif;
+}
+
+.f1-tag {
+  background: #e10600; /* Official F1 Red */
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.f1-hero-content h1 {
+  font-size: 3rem;
+  margin: 15px 0;
+}
+
+/* Positions the car on the right side */
+.f1-car-image {
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  height: 90%;
+  object-fit: contain;
+  z-index: 1;
+  pointer-events: none; /* Allows clicks to pass through to the container */
+}
+</style>
 
     <main class="hero-section">
         <section class="homepage-layout">
@@ -83,8 +170,15 @@
 
     <footer class="site-footer">
         <p>Website concept by Rokas</p>
+        <p>Built by Kaiske8</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
+<!-- DO NOT FORGET!!-->
+ <!-- grid layout for latest news-->
+  <!-- add more history to lewis and charles html-->
+   <!-- add interactive engine sound-->
+<!-- push the title and hero cards down and insert a new hero card with a f1 car maybe add the engine sound to it?-->
+ <!--check for consisent font-->

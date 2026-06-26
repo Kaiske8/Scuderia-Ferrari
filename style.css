@@ -61,6 +61,41 @@ body::before {
   justify-content: center;
 }
 
+.logo-container {
+  cursor: default;
+}
+
+/* small tooltip shown when hovering the (non-clickable) logo */
+.logo-container::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -42px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(255, 0, 0, 0.96);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  z-index: 1100;
+}
+
+.logo-container:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 640px) {
+  .logo-container::after {
+    bottom: -36px;
+    font-size: 0.8rem;
+  }
+}
+
 .navbar-logo {
   height: 36px;
   width: auto;
@@ -423,6 +458,10 @@ body::before {
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 35px rgba(255, 0, 0, 0.08);
+}
+
+.driver-page {
+  padding-top: 84px;
 }
 
 .driver-page .hero-content {

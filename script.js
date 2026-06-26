@@ -36,3 +36,26 @@ function updateCountdown() {
 
 updateCountdown();
 const timer = setInterval(updateCountdown, 1000);
+
+/* Logo tooltip: pick a playful message on hover */
+(function () {
+  const messages = [
+    "Vroom vroom — not a button",
+    "Pure Ferrari energy",
+    "Don't click me, I'm posing",
+    "Built with ❤️ for Rokas",
+    "Shift to 7th gear mentally"
+  ];
+
+  const containers = document.querySelectorAll('.logo-container');
+  if (!containers || containers.length === 0) return;
+
+  containers.forEach((c) => {
+    // ensure a default tooltip exists
+    c.dataset.tooltip = messages[0];
+    c.addEventListener('mouseenter', () => {
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      c.dataset.tooltip = msg;
+    });
+  });
+})();

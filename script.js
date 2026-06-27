@@ -1,6 +1,7 @@
 const countdownE1 = document.querySelector("#race-countdown");
-const targetdate = new Date(countdownE1.dataset.target);
 
+if (countdownE1) {
+const targetdate = new Date(countdownE1.dataset.target);
 const daysE1 = document.querySelector(".cd-days");
 const hoursE1 = document.querySelector(".cd-hours");
 const minutesE1 = document.querySelector(".cd-minutes");
@@ -36,7 +37,7 @@ function updateCountdown() {
 
 updateCountdown();
 const timer = setInterval(updateCountdown, 1000);
-
+}
 /* Logo tooltip: pick a playful message on hover */
 (function () {
   const messages = [

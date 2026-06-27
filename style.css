@@ -444,6 +444,7 @@ body::before {
 
 /* Driver Detail Pages */
 .driver-detail {
+  flex-shrink: 0;
   max-width: 460px;
   width: min(460px, calc(100% - 40px));
   margin: 80px 0 0 18px;
@@ -809,4 +810,86 @@ body::before {
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.5;
   margin: 0;
+}
+.driver-extended {
+    padding: 8px 0 0 0;
+}
+
+.extended-heading {
+    font-size: 0.82rem;
+    color: #ff0000;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 0 14px;
+}
+
+.driver-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.driver-bio p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.88rem;
+    line-height: 1.75;
+}
+
+.career-timeline {
+    border-left: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.timeline-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0 14px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timeline-item:last-child { border-bottom: none; }
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 20px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff0000;
+    box-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+}
+
+.tl-year {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #ff0000;
+    white-space: nowrap;
+    min-width: 52px;
+    padding-top: 2px;
+}
+
+.tl-content strong {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 4px;
+}
+
+.tl-content p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.55;
+    margin: 0;
+}
+.driver-page-layout {
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    gap: 40px;
+    padding: 0 24px 80px;
+    align-items: start;
+    width: 100%;
 }

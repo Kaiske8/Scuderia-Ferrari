@@ -27,14 +27,13 @@
   <div class="f1-hero-content">
     <span class="f1-tag">New Season</span>
     <h1>Experience Formula 1 Speed</h1>
-    <p>Click anywhere on this card to rev the V6 Turbo Hybrid engine!</p>
   </div>
   
   <!-- F1 Car Image -->
-  <img src="f1-car.png  " alt="F1 Car" class="f1-car-image">
+  <img src="f1-car.png" alt="F1 Car" class="f1-car-image">
   
   <!-- Hidden Audio Element -->
-  <audio id="f1-engine-sound" src="path-to-your-engine-sound.mp3" preload="auto"></audio>
+  <audio id="f1-engine-sound" src="Engine.mp3" preload="auto"></audio>
 </div>
 
 <script>
@@ -55,9 +54,10 @@ function playEngineSound() {
 /* Base layout styles to push the old content down */
 .f1-hero-card {
   position: relative;
-  width: calc(100% - 48px)
-  min-height: 450px;
-  background: linear-gradient(135deg, #15151e 0%, #1f1f2e 100%);
+  width: calc(100% - 24px);
+  margin: 80px auto 32px;
+  min-height: 240px;
+  background: linear-gradient(135deg, #0000 0%, #0000 100%);
   color: #ffffff;
   border-radius: 16px;
   padding: 40px;
@@ -79,7 +79,6 @@ function playEngineSound() {
 .f1-hero-content {
   max-width: 50%;
   z-index: 2;
-  font-family: sans-serif;
 }
 
 .f1-tag {
@@ -93,19 +92,20 @@ function playEngineSound() {
 }
 
 .f1-hero-content h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 15px 0;
 }
 
-/* Positions the car on the right side */
 .f1-car-image {
   position: absolute;
-  right: -20px;
-  bottom: 0;
-  height: 90%;
+  right: -25%;
+  bottom: 50%;
+  height: 150%;
+  width: 150%;
+  transform: translateY(50%);
   object-fit: contain;
   z-index: 1;
-  pointer-events: none; /* Allows clicks to pass through to the container */
+  pointer-events: none;
 }
 </style>
 
@@ -144,13 +144,39 @@ function playEngineSound() {
                 </section>
 
                 <section class="news">
-                    <h2>Latest News</h2>
-                    <ul class="news-list">
-                        <li><a href="https://www.ferrari.com/en-EN/formula1/articles/austrian-grand-prix-2026-media-hamilton">Lewis: we're building one step at a time</a></li>
-                        <li><a href="https://www.ferrari.com/en-EN/formula1/articles/barcelona-grand-prix-2026-race-report">Hamilton paints Barcelona red</a></li>
-                        <li><a href="https://www.ferrari.com/en-EN/formula1/articles/austrian-grand-prix-2026-media-leclerc">Charles: "The target is to put everything together"</a></li>
-                        <li><a href="https://www.ferrari.com/en-EN/formula1/articles/barcelona-grand-prix-2026-race">Race recap: Lewis wins, Charles retires</a></li>
-                    </ul>
+                   <h2>Latest News</h2>
+                   <div class="news-grid">
+                    <a href="https://www.ferrari.com/en-EN/formula1/articles/austrian-grand-prix-2026-free-practice-2" class="news-card" target="_blank" rel="noopener">
+                <img src="news-1.jpg" alt="Free Practice 2: Lewis fifth, Charles eighth">
+                <div class="news-card-body">
+                  <span class="news-tag">Practice 2</span>
+                  <p>Free Practice 2: Lewis fifth, Charles eighth </p>
+                  </div>
+                </a>
+
+                    <a href="https://www.ferrari.com/en-EN/formula1/articles/austrian-grand-prix-2026-free-practice-1" class="news-card" target="_blank" rel="noopener">
+                <img src="news-2.jpg" alt="Free practice 1: Lewis fifth, Dino ninth">
+                <div class="news-card-body">
+                  <span class="news-tag">Practice 1</span>
+                  <p>Free practice 1: Lewis fifth, Dino ninth </p>
+                   </div>
+                </a>
+
+                    <a href="https://www.ferrari.com/en-EN/formula1/articles/austrian-grand-prix-2026-media-leclerc" class="news-card" target="_blank" rel="noopener">
+                <img src="news-3.jpg" alt="Charles:"The target is to put everything together">
+                <div class="news-card-body">
+                  <span class="news-tag">Charles</span>
+                  <p>Charles:"The target is to put everything together</p>
+                  </div>
+                </a>
+
+                    <a href="https://www.ferrari.com/en-EN/formula1/articles/austrian-grand-prix-2026-media-hamilton" class="news-card" target="_blank" rel="noopener">
+                <img src="news-4.jpg" alt="Lewis: We are building one step at a time">
+                <div class="news-card-body">
+                  <span class="news-tag">lewis</span>
+                  <p>Lewis: We are building one step at a time</p>
+                   </div>
+                </a>
                 </section>
             </div>
 
@@ -177,8 +203,6 @@ function playEngineSound() {
 </body>
 </html>
 <!-- DO NOT FORGET!!-->
- <!-- grid layout for latest news-->
   <!-- add more history to lewis and charles html-->
-   <!-- add interactive engine sound-->
-<!-- push the title and hero cards down and insert a new hero card with a f1 car maybe add the engine sound to it?-->
  <!--check for consisent font-->
+ <!-- make the easter egg on ferrari work on all sites-->

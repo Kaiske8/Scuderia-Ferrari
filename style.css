@@ -9,10 +9,7 @@ body {
   background-color: #000000;
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
   color: #ffffff;
-}
-
-html {
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 body::before {
@@ -431,65 +428,6 @@ body::before {
   }
 }
 
-@media (max-width: 1000px) {
-  .homepage-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    margin: 30px auto 40px;
-    padding: 0 16px 40px;
-  }
-
-  .left-column,
-  .middle-column,
-  .right-column {
-    width: 100% !important;
-  }
-
-  .hero-card,
-  .f1-hero-card,
-  .next-race,
-  .news {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto 16px !important;
-  }
-
-  .driver-photo {
-    height: 260px;
-  }
-
-  .hero-card h2,
-  .hero-card p {
-    text-align: left;
-  }
-
-  .f1-hero-card {
-    margin: 40px auto 24px;
-    min-height: 200px;
-    padding: 28px;
-  }
-
-  .f1-hero-content {
-    max-width: 100%;
-  }
-
-  .f1-car-image {
-    right: -18%;
-    height: 135%;
-    width: 135%;
-  }
-
-  .next-race,
-  .news {
-    padding: 22px;
-  }
-
-  .news-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-}
-
 @media (max-width: 900px) {
   .homepage-layout {
     grid-template-columns: 1fr;
@@ -501,9 +439,29 @@ body::before {
     height: 280px;
   }
 
+  .f1-hero-card {
+    margin: 60px auto 24px;
+    min-height: 220px;
+    padding: 32px;
+  }
+
+  .f1-hero-content {
+    max-width: 100%;
+  }
+
+  .f1-car-image {
+    right: -20%;
+    height: 140%;
+    width: 140%;
+  }
+
   .next-race,
   .news {
     padding: 24px;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -530,6 +488,19 @@ body::before {
     font-size: 0.8rem;
   }
 
+  .f1-hero-card {
+    width: calc(100% - 24px);
+    margin: 50px auto 24px;
+    min-height: 200px;
+    padding: 28px 18px;
+  }
+
+  .f1-car-image {
+    right: -15%;
+    height: 130%;
+    width: 130%;
+  }
+
   .next-race,
   .news {
     padding: 20px;
@@ -543,6 +514,7 @@ body::before {
 
   .countdown-timer {
     font-size: 1rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cd-days,
@@ -551,6 +523,10 @@ body::before {
   .cd-seconds {
     padding: 12px 8px;
     font-size: 1.4rem;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
   }
 
   .news-list {

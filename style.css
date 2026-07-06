@@ -893,3 +893,38 @@ body::before {
     align-items: start;
     width: 100%;
 }
+.next-race-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff0000;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#race-countdown {
+  text-align: center;
+}
+
+.countdown-timer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+.cd-days,
+.cd-hours,
+.cd-minutes,
+.cd-seconds {
+  min-width: 44px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 4, 13, 0.35);
+  background: rgba(255, 4, 13, 0.12);
+  color: #ffffff;
+  font-weight: 700;
+  text-align: center;
+}

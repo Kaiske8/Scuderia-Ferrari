@@ -1,44 +1,98 @@
-const countdownE1 = document.querySelector("#race-countdown");
+const countdownEl = document.querySelector("#race-countdown");
 
-if (countdownE1) {
-const targetdate = new Date(countdownE1.dataset.target);
-const daysE1 = document.querySelector(".cd-days");
-const hoursE1 = document.querySelector(".cd-hours");
-const minutesE1 = document.querySelector(".cd-minutes");
-const secondsE1 = document.querySelector(".cd-seconds");
+const raceSchedule = [
+  { name: "Australian Grand Prix", date: "2026-03-08T05:00:00Z" },
+  { name: "Bahrain Grand Prix", date: "2026-03-15T15:00:00Z" },
+  { name: "Saudi Arabian Grand Prix", date: "2026-03-29T17:00:00Z" },
+  { name: "Japanese Grand Prix", date: "2026-04-12T06:00:00Z" },
+  { name: "Belgian Grand Prix", date: "2026-08-30T13:00:00Z" }
+];
 
-function pad(value) {
-  return String(value).padStart(2, "0");
+function getNextRace() {
+  const now = new Date();
+
+  const upcoming = raceSchedule
+    .map((race) => ({
+      ...race,
+      date: new Date(race.date)
+    }))
+    .filter((race) => race.date > now)
+    .sort((a, b) => a.date - b.date);
+
+  return upcoming[0] || null;
 }
 
-function updateCountdown() {
-  const currentDate = new Date();
-  const diff = targetdate - currentDate;
+if (countdownEl) {
+  const daysEl = document.querySelector(".cd-days");
+  const hoursEl = document.querySelector(".cd-hours");
+  const minutesEl = document.querySelector(".cd-minutes");
+  const secondsEl = document.querySelector(".cd-seconds");
+  const raceNameEl = document.querySelector(".next-race-name");
 
-  if (diff <= 0) {
-    daysE1.textContent = "00";
-    hoursE1.textContent = "00";
-    minutesE1.textContent = "00";
-    secondsE1.textContent = "00";
-    clearInterval(timer);
-    return;
+  let targetDate = countdownEl.dataset.target
+    ? new Date(countdownEl.dataset.target)
+    : null;
+
+  function setNextRace() {
+    const nextRace = getNextRace();
+
+    if (nextRace) {
+      targetDate = nextRace.date;
+      countdownEl.dataset.target = nextRace.date.toISOString();
+
+      if (raceNameEl) {
+        raceNameEl.textContent = nextRace.name;
+      }
+    } else {
+      targetDate = null;
+
+      if (raceNameEl) {
+        raceNameEl.textContent = "Next race to be announced";
+      }
+
+      if (daysEl) daysEl.textContent = "00";
+      if (hoursEl) hoursEl.textContent = "00";
+      if (minutesEl) minutesEl.textContent = "00";
+      if (secondsEl) secondsEl.textContent = "00";
+    }
   }
 
-  const seconds = Math.floor(diff / 1000) % 60;
-  const minutes = Math.floor(diff / 1000 / 60) % 60;
-  const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
-  const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+  function pad(value) {
+    return String(value).padStart(2, "0");
+  }
 
-  daysE1.textContent = pad(days);
-  hoursE1.textContent = pad(hours);
-  minutesE1.textContent = pad(minutes);
-  secondsE1.textContent = pad(seconds);
+  function updateCountdown() {
+    if (!targetDate || Number.isNaN(targetDate.getTime())) {
+      setNextRace();
+      if (!targetDate) return;
+    }
+
+    const currentDate = new Date();
+    const diff = targetDate - currentDate;
+
+    if (diff <= 0) {
+      setNextRace();
+      if (!targetDate) return;
+      updateCountdown();
+      return;
+    }
+
+    const seconds = Math.floor(diff / 1000) % 60;
+    const minutes = Math.floor(diff / 1000 / 60) % 60;
+    const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
+    const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+
+    if (daysEl) daysEl.textContent = pad(days);
+    if (hoursEl) hoursEl.textContent = pad(hours);
+    if (minutesEl) minutesEl.textContent = pad(minutes);
+    if (secondsEl) secondsEl.textContent = pad(seconds);
+  }
+
+  setNextRace();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 }
 
-updateCountdown();
-const timer = setInterval(updateCountdown, 1000);
-}
-/* Logo tooltip: pick a playful message on hover */
 (function () {
   const messages = [
     "Vroom vroom — not a button",
@@ -48,15 +102,58 @@ const timer = setInterval(updateCountdown, 1000);
     "Shift to 7th gear mentally"
   ];
 
-  const containers = document.querySelectorAll('.logo-container');
-  if (!containers || containers.length === 0) return;
-
-  containers.forEach((c) => {
-    // ensure a default tooltip exists
-    c.dataset.tooltip = messages[0];
-    c.addEventListener('mouseenter', () => {
+  document.querySelectorAll(".logo-container").forEach((container) => {
+    container.dataset.tooltip = messages[0];
+    container.addEventListener("mouseenter", () => {
       const msg = messages[Math.floor(Math.random() * messages.length)];
-      c.dataset.tooltip = msg;
+      container.dataset.tooltip = msg;
     });
   });
 })();
+
+async function loadNews() {
+  const newsGrid = document.querySelector(".news-grid");
+  if (!newsGrid) return;
+
+  const originalMarkup = newsGrid.innerHTML;
+
+  try {
+    const response = await fetch("news.json");
+    if (!response.ok) throw new Error("failed to load news");
+
+    const data = await response.json();
+    const items = Array.isArray(data) ? data : [];
+
+    if (items.length === 0) {
+      throw new Error("No news items found");
+    }
+
+    newsGrid.innerHTML = items
+      .map((item) => {
+        const title = item.title || "Latest update";
+        const link = item.link || "#";
+        const tag = item.tag || "News";
+        const image = item.image || "news-1.jpg";
+
+        return `
+          <a href="${link}" class="news-card" target="_blank" rel="noopener">
+            <img src="${image}" alt="${title}">
+            <div class="news-card-body">
+              <span class="news-tag">${tag}</span>
+              <p>${title}</p>
+            </div>
+          </a>
+        `;
+      })
+      .join("");
+  } catch (error) {
+    console.error("News load failed:", error);
+
+    if (!newsGrid.querySelector(".news-card")) {
+      newsGrid.innerHTML = originalMarkup;
+    }
+  }
+}
+
+loadNews();
+setInterval(loadNews, 5 * 60 * 1000);

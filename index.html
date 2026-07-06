@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- The Top Navigation Bar -->
     <header class="ferrari-navbar">
         <button class="menu-btn" type="button">MENU</button>
 
@@ -22,94 +21,17 @@
             <a href="https://store.ferrari.com/en-it/" class="nav-link" target="_blank" rel="noopener">SHOP</a>
         </div>
     </header>
-   <!-- Main Container for the New Hero Card -->
-<div class="f1-hero-card" onclick="playEngineSound()">
-  <div class="f1-hero-content">
-    <span class="f1-tag">New Season</span>
-    <h1>Experience Formula 1 Speed</h1>
-  </div>
-  
-  <!-- F1 Car Image -->
-  <img src="f1-car.png" alt="F1 Car" class="f1-car-image">
-  
-  <!-- Hidden Audio Element -->
-  <audio id="f1-engine-sound" src="Engine.mp3" preload="auto"></audio>
-</div>
-
-<script>
-function playEngineSound() {
-  const sound = document.getElementById('f1-engine-sound');
-  
-  sound.currentTime = 0; 
-  
-  // Play the engine sound
-  sound.play().catch(error => {
-    console.log("Browser blocked autoplay. User interaction verified:", error);
-  });
-}
-</script>
-
-<style>
-.f1-hero-card {
-  position: relative;
-  width: calc(100% - 24px);
-  margin: 80px auto 32px;
-  min-height: 240px;
-  background: linear-gradient(135deg, #0000 0%, #0000 100%);
-  color: #ffffff;
-  border-radius: 16px;
-  padding: 40px;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  margin-bottom: 50px; /* Crucial: This pushes your old title and cards down */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Subtle interactive hover effect */
-.f1-hero-card:hover {
-  transform: scale(1.005);
-  box-shadow: 0 15px 35px rgba(225, 6, 0, 0.2); /* F1 Red glow */
-}
-
-.f1-hero-content {
-  max-width: 50%;
-  z-index: 2;
-}
-
-.f1-tag {
-  background: #e10600; /* Official F1 Red */
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.f1-hero-content h1 {
-  font-size: 2rem;
-  margin: 15px 0;
-}
-
-.f1-car-image {
-  position: absolute;
-  right: -25%;
-  bottom: 50%;
-  height: 150%;
-  width: 150%;
-  transform: translateY(50%);
-  object-fit: contain;
-  z-index: 1;
-  pointer-events: none;
-}
-</style>
+    <div class="f1-hero-card" tabindex="0" role="button" aria-label="Play engine sound">
+        <div class="f1-hero-content">
+            <span class="f1-tag">New Season</span>
+            <h2>Experience Formula 1 Speed</h2>
+        </div>
+        <img src="f1-car.png" alt="F1 Car" class="f1-car-image">
+        <audio id="f1-engine-sound" src="Engine.mp3" preload="auto"></audio>
+    </div>
 
     <main class="hero-section">
         <section class="homepage-layout">
-            <!-- Left: Charles Leclerc -->
             <div class="left-column">
                 <a href="charles.html" class="hero-card" aria-label="Charles Leclerc">
                     <img src="charles.jpg" alt="Charles Leclerc" class="driver-photo">
@@ -121,10 +43,9 @@ function playEngineSound() {
                 </a>
             </div>
 
-            <!-- Middle: Hero Content + Upcoming Race & News -->
             <div class="middle-column">
-                <section class="hero-content" style="text-align: center;">
-                    <h1> Scuderia Ferrari</h1>
+                <section class="hero-content hero-content--centered">
+                    <h1>Scuderia Ferrari</h1>
                     <p>Welcome to the home of Ferrari Formula 1 passion.</p>
                 </section>
 
@@ -161,10 +82,10 @@ function playEngineSound() {
                 </a>
 
                     <a href="https://www.ferrari.com/en-EN/formula1/articles/austrian-grand-prix-2026-media-leclerc" class="news-card" target="_blank" rel="noopener">
-                <img src="news-3.jpg" alt="Charles:"The target is to put everything together">
+                <img src="news-3.jpg" alt="Charles — The target is to put everything together">
                 <div class="news-card-body">
                   <span class="news-tag">Charles</span>
-                  <p>Charles:"The target is to put everything together</p>
+                  <p>Charles: "The target is to put everything together"</p>
                   </div>
                 </a>
 
@@ -178,7 +99,6 @@ function playEngineSound() {
                 </section>
             </div>
 
-            <!-- Right: Lewis Hamilton -->
             <div class="right-column">
                 <a href="lewis.html" class="hero-card" aria-label="Lewis Hamilton">
                     <img src="lewis.jpg" alt="Lewis Hamilton" class="driver-photo">

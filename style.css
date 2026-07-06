@@ -119,6 +119,60 @@ body::before {
   color: #ffffff;
 }
 
+.f1-hero-card {
+  position: relative;
+  width: calc(100% - 24px);
+  margin: 80px auto 32px;
+  min-height: 240px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.05));
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.f1-hero-card:hover {
+  transform: scale(1.005);
+  box-shadow: 0 15px 35px rgba(225, 6, 0, 0.2);
+}
+
+.f1-hero-content {
+  max-width: 50%;
+  z-index: 2;
+}
+
+.f1-tag {
+  background: #e10600;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.f1-hero-content h2 {
+  font-size: 2rem;
+  margin: 15px 0;
+}
+
+.f1-car-image {
+  position: absolute;
+  right: -25%;
+  bottom: 50%;
+  height: 150%;
+  width: 150%;
+  transform: translateY(50%);
+  object-fit: contain;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .hero-section {
   padding: 0;
   min-height: auto;
@@ -131,6 +185,10 @@ body::before {
   padding: 0;
   margin-bottom: 32px;
   text-align: left;
+}
+
+.hero-content--centered {
+  text-align: center;
 }
 
 .hero-content h1 {
@@ -381,9 +439,29 @@ body::before {
     height: 280px;
   }
 
+  .f1-hero-card {
+    margin: 60px auto 24px;
+    min-height: 220px;
+    padding: 32px;
+  }
+
+  .f1-hero-content {
+    max-width: 100%;
+  }
+
+  .f1-car-image {
+    right: -20%;
+    height: 140%;
+    width: 140%;
+  }
+
   .next-race,
   .news {
     padding: 24px;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -410,6 +488,19 @@ body::before {
     font-size: 0.8rem;
   }
 
+  .f1-hero-card {
+    width: calc(100% - 24px);
+    margin: 50px auto 24px;
+    min-height: 200px;
+    padding: 28px 18px;
+  }
+
+  .f1-car-image {
+    right: -15%;
+    height: 130%;
+    width: 130%;
+  }
+
   .next-race,
   .news {
     padding: 20px;
@@ -423,6 +514,7 @@ body::before {
 
   .countdown-timer {
     font-size: 1rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cd-days,
@@ -431,6 +523,10 @@ body::before {
   .cd-seconds {
     padding: 12px 8px;
     font-size: 1.4rem;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
   }
 
   .news-list {

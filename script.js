@@ -124,16 +124,24 @@ async function loadNews() {
     const data = await response.json();
     const items = Array.isArray(data) ? data : [];
 
+    // fallback images to use when news items don't include an image
+    const fallbackImages = [
+      "news-1.jpg",
+      "news-2.jpg",
+      "news-3.jpg",
+      "news-4.jpg",
+    ];
+
     if (items.length === 0) {
       throw new Error("No news items found");
     }
 
     newsGrid.innerHTML = items
-      .map((item) => {
+      .map((item, idx) => {
         const title = item.title || "Latest update";
         const link = item.link || "#";
         const tag = item.tag || "News";
-        const image = item.image || "news-1.jpg";
+        const image = item.image || fallbackImages[idx % fallbackImages.length];
 
         return `
           <a href="${link}" class="news-card" target="_blank" rel="noopener">
@@ -157,3 +165,43 @@ async function loadNews() {
 
 loadNews();
 setInterval(loadNews, 5 * 60 * 1000);
+
+function playEngineSound() {
+  const sound = document.getElementById('f1-engine-sound');
+  if (!sound) return;
+  sound.currentTime = 0;
+  sound.play().catch(error => {
+    console.log('Playback blocked or failed:', error);
+  });
+}
+
+const heroCard = document.querySelector('.f1-hero-card');
+if (heroCard) {
+  heroCard.addEventListener('click', playEngineSound);
+  heroCard.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      playEngineSound();
+    }
+  });
+}
+
+
+function playEngineSound() {
+  const sound = document.getElementById('f1-engine-sound');
+  if (!sound) return;
+  sound.currentTime = 0;
+  sound.play().catch(error => {
+    console.log('Playback blocked or failed:', error);
+  });
+}
+
+document.addEventListener('keydown', (event) => {
+  const heroCard = document.querySelector('.f1-hero-card');
+  if (!heroCard || document.activeElement !== heroCard) return;
+
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    playEngineSound();
+  }
+});

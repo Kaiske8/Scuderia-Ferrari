@@ -439,15 +439,28 @@ body::before {
     padding: 0 16px 40px;
   }
 
+  .left-column,
+  .middle-column,
+  .right-column {
+    width: 100% !important;
+  }
+
+  .hero-card,
+  .f1-hero-card,
+  .next-race,
+  .news {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 16px !important;
+  }
+
   .driver-photo {
     height: 260px;
   }
 
-  .hero-card,
-  .f1-hero-card {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto 16px;
+  .hero-card h2,
+  .hero-card p {
+    text-align: left;
   }
 
   .f1-hero-card {
@@ -472,7 +485,7 @@ body::before {
   }
 
   .news-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr !important;
     gap: 16px;
   }
 }

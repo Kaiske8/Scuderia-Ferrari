@@ -141,7 +141,7 @@ async function loadNews() {
 
     const data = await response.json();
     const items = Array.isArray(data) ? data : [];
-    const fallbackImages = ["news-1.jpg", "news-2.jpg", "news-3.jpg", "news-4.jpg"];
+    const fallbackImages = ["Assets/news-1.jpg", "Assets/news-2.jpg", "Assets/news-3.jpg", "Assets/news-4.jpg"];
 
     if (items.length === 0) throw new Error("No news items found");
 
@@ -150,7 +150,10 @@ async function loadNews() {
         const title = item.title || "Latest update";
         const link = item.link || "#";
         const tag = item.tag || "News";
-        const image = item.image || fallbackImages[idx % fallbackImages.length];
+        const rawImage = item.image || fallbackImages[idx % fallbackImages.length];
+        const image = rawImage.startsWith("http") || rawImage.startsWith("/") || rawImage.startsWith("Assets/")
+          ? rawImage
+          : `Assets/${rawImage}`;
 
         return `
           <a href="${link}" class="news-card" target="_blank" rel="noopener">
